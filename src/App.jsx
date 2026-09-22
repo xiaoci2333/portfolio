@@ -30,7 +30,7 @@ function Gallery({ project, onClose }) {
     return () => { document.body.style.overflow = previous; if (element.open) element.close(); };
   }, []);
 
-  return <dialog ref={dialog} className="gallery" aria-labelledby="gallery-title" onCancel={onClose} onClick={e => {
+  return <dialog ref={dialog} className={`gallery ${project.coverLayout === 'amazon' ? 'gallery-amazon' : ''}`} aria-labelledby="gallery-title" onCancel={onClose} onClick={e => {
     if (e.target !== dialog.current) return;
     const rect = dialog.current.getBoundingClientRect();
     if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) onClose();
@@ -38,17 +38,18 @@ function Gallery({ project, onClose }) {
     if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
     if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
   }}>
-    <div className="gallery-header"><div><span className="eyebrow">{project.categoryLabel}</span><h2 id="gallery-title">{project.title}</h2></div><button className="close-button" onClick={onClose} aria-label="关闭作品预览">关闭 ×</button></div>
+    <div className="gallery-header"><div><span className="eyebrow">{project.categoryLabel}</span><h2 id="gallery-title">{project.coverLayout === 'amazon' ? '耳夹式耳机 · 六图展示' : project.title}</h2></div><button className="close-button" onClick={onClose} aria-label="关闭作品预览">关闭 ×</button></div>
     <div className="gallery-stage"><Artwork image={images[index]} /></div>
-    <div className="gallery-footer"><p>{images[index].alt}</p>{images.length > 1 && <div className="gallery-controls"><button onClick={() => move(-1)} aria-label="上一张">←</button><span aria-live="polite">{index + 1} / {images.length}</span><button onClick={() => move(1)} aria-label="下一张">→</button></div>}</div>
+    <div className="gallery-footer"><div><p>{images[index].alt}</p>{images[index].note && <p className="gallery-note">{images[index].note}</p>}</div>{images.length > 1 && <div className="gallery-controls"><button onClick={() => move(-1)} aria-label="上一张">←</button><span aria-live="polite">{index + 1} / {images.length}</span><button onClick={() => move(1)} aria-label="下一张">→</button></div>}</div>
+    {project.coverLayout === 'amazon' && <div className="gallery-thumbnails" role="group" aria-label="选择商品图">{images.map((image, i) => <button key={image.src} aria-label={`查看第${i+1}张：${image.alt}`} aria-pressed={i === index} className={i === index ? 'selected' : ''} onClick={() => setIndex(i)}><img src={image.src} alt="" /><span>0{i+1}</span></button>)}</div>}
   </dialog>;
 }
 
 function ProjectCard({ project, index, onOpen }) {
   return <article className="project-card">
-    <button className={`project-image ${project.images.length > 1 ? 'contact-sheet' : ''}`} onClick={() => onOpen(project)} aria-label={`查看${project.title}作品画面`}>
-      <span className="project-pictures">{project.images.map(image => <Artwork key={image.src} image={image} loading="lazy" />)}</span>
-      <span className="image-label">{project.categoryLabel}</span><span className="image-action">查看画面 ↗</span>
+    <button className={`project-image ${project.coverLayout === 'amazon' ? 'amazon-cover' : project.images.length > 1 ? 'contact-sheet' : ''}`} onClick={() => onOpen(project)} aria-label={`查看${project.title}作品画面`}>
+      <span className="project-pictures">{(project.coverLayout === 'amazon' ? project.images.slice(0, 3) : project.images).map(image => <Artwork key={image.src} image={image} loading="lazy" />)}</span>
+      <span className="image-label">{project.categoryLabel}</span><span className="image-action">{project.coverLayout === 'amazon' ? '查看完整 6 张图 ↗' : '查看画面 ↗'}</span>
     </button>
     <div className="project-heading"><h3><button onClick={() => onOpen(project)}>{project.title}</button></h3><span>{String(index + 1).padStart(2, '0')}</span></div>
     <p className="project-subtitle">{project.subtitle}</p>

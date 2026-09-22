@@ -3,10 +3,18 @@ const image = (file, alt) => ({ src: `${import.meta.env.BASE_URL}images/${file}.
 export const projects = [
   {
     id: 'earbuds-listing', category: 'amazon', categoryLabel: '亚马逊产品视觉',
-    title: '耳夹式蓝牙耳机', subtitle: '从产品细节，到真实使用场景',
-    description: '家居、办公与户外场景搭建，结合产品精修与光影统一，呈现一套适合商品页面的产品视觉。',
-    tags: ['产品精修', '场景合成', '商品页面'],
-    images: [image('earbuds-home', '耳机 · 北欧家居桌面'), image('earbuds-office', '耳机 · 极简办公桌面'), image('earbuds-outdoor', '耳机 · 户外佩戴'), image('earbuds-detail', '耳机 · 产品细节')],
+    title: '耳夹式耳机 · 亚马逊商品图', subtitle: '一套六张图，从产品外观到使用场景',
+    description: '围绕象牙白与金色的产品风格，组织白底主图、佩戴场景、细节说明与卖点汇总。统一英文排版和画面色调，让商品信息更清晰。',
+    tags: ['白底主图', '场景辅图', '卖点信息图'],
+    coverLayout: 'amazon',
+    images: [
+      { ...image('amazon-earbuds-01', "白底主图 · 产品与充电仓"), note: "用简洁白底突出耳机与充电仓的外观，让产品形态成为第一视觉焦点。" },
+      { ...image('amazon-earbuds-02', "户外佩戴 · 直观呈现上耳效果"), note: "结合佩戴近景与产品特写，展示耳夹结构和开放式外观。" },
+      { ...image('amazon-earbuds-03', "设计细节 · 象牙白与金色质感"), note: "通过局部放大与英文标注，说明配色、造型和充电仓设计。" },
+      { ...image('amazon-earbuds-04', "日常场景 · 咖啡馆穿搭"), note: "用日常咖啡馆场景建立生活联想，统一人物、服装与产品的视觉调性。" },
+      { ...image('amazon-earbuds-05', "便携展示 · 充电仓与随身配饰"), note: "将产品放入随身物品场景，直观表现充电仓尺寸感与携带方式。" },
+      { ...image('amazon-earbuds-06', "卖点汇总 · 四个设计亮点"), note: "以四个局部视图整理外观信息，帮助浏览者快速理解设计特点。" }
+    ],
   },
   {
     id: 'earbuds-video', category: 'video', categoryLabel: '产品短视频',
