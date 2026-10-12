@@ -1,43 +1,32 @@
-# 姚振扬 · React 作品集
+# 姚振扬 · AI 商业广告导演作品集
 
-React + Vite 单页作品集基础版。页面最大版心 1700px，包含首屏、关于我、能力、作品、工作流程和联系信息；支持作品筛选、图片画廊、微信复制和响应式布局。
+中文版 React + Vite 作品集，包含首页循环混剪、5 组项目案例、6 支完整广告、分类作品画廊、创作能力、制作流程、工具与联系信息。
 
-当前视觉参考 Arctic Lab：全屏循环视频、玻璃导航、冷色深灰、大标题与两列作品展示。保留个人求职内容。
-
-## 本地运行
-
-安装 Node.js 20.19+ 或 22.12+，使用 npm：
+## 开发与构建
 
 ```sh
 npm ci
 npm run dev
 ```
 
-打开终端显示的本地网址。项目沿用原仓库的 package-lock.json 和已安装依赖。
-
 ```sh
 npm run build
 npm run preview
 ```
 
-生产文件生成在 dist/。React 项目应通过本地服务器预览，不直接双击 index.html。
+生产文件在 `dist/`。请使用本地服务预览，直接双击项目根目录的 `index.html` 不会运行 React 应用。部署时将 `dist/` 作为网站根目录，可使用支持 Vite 的静态主机。
 
-## 后续修改位置
+## 内容位置
 
-- src/App.jsx：页面分区和交互组件
-- src/VideoHero.jsx：首屏背景视频、双视频交叉淡化循环、播放与暂停、离屏暂停及减少动态效果支持
-- src/data.js：作品、技能、岗位能力和流程文案
-- src/styles.css：颜色、布局、响应式样式；--container 控制 1700px 版心
-- public/images：压缩后的真实作品 WebP 图；amazon-earbuds-01 至 06 为最新亚马逊耳机案例
-- public/videos/earbuds-film.mp4：约 1.6 MB 的原始耳机广告视频，作为首屏静音背景；无法播放时保留静态封面
+- `src/commercial/Portfolio.tsx`：中文页面、案例、分类与播放弹窗。
+- `src/commercial/styles.css`：桌面与手机布局、动画和中文字体设置。
+- `src/commercial/react-bits/`：React Bits SpotlightCard 组件及许可证。
+- `public/videos/`：6 支广告与 12 秒首页混剪，H.264/AAC，支持渐进加载。
+- `public/thumbnails/`：真实视频封面。
+- `public/contact.json`：姓名、邮箱、电话与可选 LinkedIn。
 
-素材来自已提供的作品集。首屏播放“耳机/广告视频.mp4”，作品卡片仍为图片预览。耳机封面为“广告视频.mp4”第3秒，牛仔封面为“30秒[美式牛仔休闲套装] UGC 投流广告.mp4”第12秒。原始素材及之前单文件网站保持独立。
+原页面的 `src/App.jsx`、相关组件和图片素材继续保留，原说明存放在 `README-previous.md`。当前入口 `src/main.jsx` 使用新版中文广告作品集。
 
-优先使用设备本地 Noto Sans SC；未安装时回退到系统中文字体。联系方式沿用已确认的邮箱 1994970272@qq.com、电话和微信 18218738079。
+首页静音循环播放；卡片悬停或聚焦时预览；点击打开含声音和控制条的完整播放器。支持键盘关闭、分类筛选和减少动态效果偏好。案例不声明客户合作或实际投放业绩。
 
-
-动效版本包含流动光晕、首屏视差、标题扫光、滚动显现和卡片过渡，自动尊重减少动态效果偏好。src/useMotion.js 管理滚动与鼠标动效。
-
-## 亚马逊产品视觉更新
-
-采用“极简耳机广告”提供的六张素材：白底主图、户外佩戴、设计细节、咖啡馆日常、便携展示和四点卖点汇总。封面以主图为核心，弹窗支持六图缩略导航、前后切换与逐图说明，适配桌面和手机。
+React Bits 来源：https://github.com/DavidHDev/react-bits ，许可证见 `src/commercial/react-bits/LICENSE.md`。

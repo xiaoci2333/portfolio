@@ -1,1 +1,23 @@
-{"name":"yao-portfolio","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"vite --host 127.0.0.1","build":"vite build","preview":"vite preview --host 127.0.0.1"},"dependencies":{"gsap":"^3.13.0","ogl":"^1.0.11","react":"19.1.1","react-dom":"19.1.1"},"devDependencies":{"vite":"6.1.0"}}
+{
+  "name": "yao-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "ogl": "^1.0.11",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "framer-motion": "^12.43.0"
+  },
+  "devDependencies": {
+    "vite": "6.1.0",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3"
+  }
+}
